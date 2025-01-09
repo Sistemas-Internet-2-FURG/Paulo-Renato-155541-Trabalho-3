@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  sb.database:
+    image: postgres:latest
+    container_name: sb.database
+    environment:
+      - POSTGRES_DB=sb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./.containers/sb-db:/var/lib/postgresql/data
+    ports:
+      - 5434:5432
+    networks:
+      - sb-network
+
+networks:
+  sb-network:
+    driver: bridge
+    external: true
